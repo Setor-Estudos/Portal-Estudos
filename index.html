@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Estudos Estratégicos – Águas do Rio</title>
+<style>
+  @import url('https://googleapis.com');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue-deep: #003B6F;
+    --blue-mid: #0065B3;
+    --blue-light: #E8F2FB;
+    --teal: #00A3A3;
+    --white: #FFFFFF;
+    --grey-50: #F7F9FC;
+    --grey-200: #E2E8F0;
+    --grey-400: #94A3B8;
+    --grey-700: #334155;
+    --grey-900: #0F172A;
+    --success: #059669;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--grey-50);
+    color: var(--grey-900);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--blue-deep);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--teal);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.2;
+  }
+
+  .logo-sub {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .header-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--teal);
+    background: rgba(0,163,163,0.12);
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+    padding: 64px 40px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: rgba(0,163,163,0.08);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 240px; height: 240px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--teal);
+    background: rgba(0,163,163,0.15);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    max-width: 600px;
+    margin: 0 auto 14px;
+  }
+
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* MAIN CONTENT */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .form-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,59,111,0.08);
+    padding: 48px;
+    margin-top: -32px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .form-header {
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+
+  .form-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    margin-bottom: 6px;
+  }
+
+  .form-header p {
+    font-size: 14px;
+    color: var(--grey-400);
+    line-height: 1.5;
+  }
+
+  /* FORM */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group.full {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--grey-700);
+  }
+
+  label span.req {
+    color: var(--teal);
+    margin-left: 2px;
+  }
+
+  input, select, textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--grey-900);
+    background: var(--grey-50);
+    border: 1.5px solid var(--grey-200);
+    border-radius: 8px;
+    padding: 11px 14px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+    width: 100%;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--blue-mid);
+    box-shadow: 0 0 0 3px rgba(0,101,179,0.1);
+    background: white;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+
+  /* SUBMIT */
+  .form-footer {
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--grey-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .form-note {
+    font-size: 12px;
+    color: var(--grey-400);
+    line-height: 1.5;
+    max-width: 360px;
+  }
+
+  .btn-submit {
+    background: var(--blue-deep);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    white-space: nowrap;
+  }
+
+  .btn-submit:hover { background: var(--blue-mid); }
+  .btn-submit:active { transform: scale(0.98); }
+  .btn-submit:disabled { background: var(--grey-400); cursor: not-allowed; }
+
+  /* SUCCESS */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 48px 24px;
+  }
+
+  .success-msg h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    margin-bottom: 8px;
+  }
+
+  .success-msg p {
+    font-size: 14px;
+    color: var(--grey-400);
+    margin-bottom: 24px;
+  }
+
+  .btn-new {
+    background: none;
+    border: 1.5px solid var(--blue-mid);
+    color: var(--blue-mid);
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-new:hover { background: var(--blue-light); }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-mark">AR</div>
+      <div>
+        <div class="logo-text">Portal de Estudos</div>
+        <div class="logo-sub">Águas do Rio</div>
+      </div>
+    </div>
+    <div class="header-tag">Planejamento Estratégico</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-eyebrow">SOLICITAÇÃO DE ANÁLISE</div>
+    <h1>Envie sua demanda para a equipe de estudos</h1>
+    <p>Preencha os dados abaixo de forma detalhada para dar início ao processo de análise técnica.</p>
+  </section>
+
+  <main class="container">
+    <div class="form-card">
+      
+      <!-- FORMULÁRIO ATIVO -->
+      <form id="meuFormulario">
+        <div class="form-header">
+          <h2>Informações da Solicitação</h2>
+          <p>Todos os campos são de preenchimento obrigatório para a triagem da demanda.</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nome">Nome do Solicitante <span class="req">*</span></label>
+            <input type="text" id="nome" name="Nome" placeholder="Seu nome completo" required>
+          </div>
+
+          <div class="form-group">
+            <label for="materia">Matéria / Tema de Estudo <span class="req">*</span></label>
+            <input type="text" id="materia" name="Materia" placeholder="Ex: Viabilidade de Redes, Perdas..." required>
+          </div>
+
+          <div class="form-group full">
+            <label for="duvida">Descrição do Problema / Dúvida <span class="req">*</span></label>
+            <textarea id="duvida" name="Duvida_Problema" placeholder="Descreva de forma detalhada qual o cenário ou estudo necessário..." required></textarea>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <div class="form-note">
+            Ao enviar, os dados serão catalogados automaticamente na planilha integrada de acompanhamento.
+          </div>
+          <button type="submit" class="btn-submit" id="btnEnviar">Enviar Solicitação</button>
+        </div>
+      </form>
+
+      <!-- MENSAGEM DE SUCESSO -->
+      <div class="success-msg" id="mensagemSucesso">
+        <div class="success-icon">✓</div>
+        <h3>Solicitação enviada com sucesso!</h3>
+        <p>Os dados já foram registrados na planilha da equipe de engenharia e estudos estratégicos.</p>
+        <button class="btn-new" id="btnNovo">Nova Solicitação</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- LÓGICA DE INTEGRAÇÃO COM O GOOGLE SHEETS -->
+  <script>
+    // -------------------------------------------------------------
+    // ATENÇÃO: SUBSTITUA O TEXTO ABAIXO PELO SEU LINK DO GOOGLE
+    // -------------------------------------------------------------
+    const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbxnERnVU6Ov5CvGtgGEHI_1QWbX8b49wN8uAKox-tWNDSP8XuDKF890WHEX1SevgD1T/exec";
+
+    const formulario = document.getElementById('meuFormulario');
+    const msgSucesso = document.getElementById('mensagemSucesso');
+    const btnEnviar = document.getElementById('btnEnviar');
+    const btnNovo = document.getElementById('btnNovo');
+
+    formulario.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        btnEnviar.innerText = "Processando Envio...";
+        btnEnviar.disabled = true;
+
+        const formData = new FormData(this);
+        const queryParams = new URLSearchParams(formData).toString();
+
+        // Envia as informações direto para as colunas do Google Sheets
+        fetch(`${URL_GOOGLE}?${queryParams}`, {
+            method: 'POST'
+        })
+        .then(() => {
+            // Oculta o form e mostra o feedback moderno de sucesso
+            formulario.style.display = 'none';
+            msgSucesso.style.display = 'block';
+            formulario.reset();
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+            alert('Não foi possível enviar os dados no momento. Verifique sua conexão.');
+        })
+        .finally(() => {
+            btnEnviar.innerText = "Enviar Solicitação";
