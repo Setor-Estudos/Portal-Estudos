@@ -31,7 +31,7 @@
   .form-header p { font-size: 14px; color: var(--grey-400); }
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .form-group { display: flex; flex-direction: column; gap: 8px; }
-  .form-group full { grid-column: 1 / -1; }
+  .form-group.full { grid-column: 1 / -1; }
   label { font-size: 13px; font-weight: 500; color: var(--grey-700); }
   label span.req { color: var(--teal); }
   input, select, textarea { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--grey-900); background: var(--grey-50); border: 1.5px solid var(--grey-200); border-radius: 8px; padding: 11px 14px; outline: none; width: 100%; }
@@ -100,7 +100,7 @@
       <div class="success-msg" id="mensagemSucesso">
         <div class="success-icon">✓</div>
         <h3>Enviado com sucesso!</h3>
-        <p>Os dados já constam no painel integrado.</p>
+        <p>Os dados já constam no painel integrado do Google Sheets.</p>
         <button class="btn-new" id="btnNovo">Nova Solicitação</button>
       </div>
 
@@ -108,15 +108,13 @@
   </main>
 
   <script>
-    // -------------------------------------------------------------------------
-    // APAGUE O LINK ABAIXO E COLE A SUA URL DO APPS SCRIPT GERADA NO PASSO 1:
-    // -------------------------------------------------------------------------
+    // DELETADO O LINK DO SHEET MONKEY VELHO E ATIVADO O SEU ENDEREÇO DO GOOGLE:
     const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbzLoIFqnlvxvkvhdkCKmcAyiiQqpbsm25dSWe1Q3mpZWKENmCZ-63ihpqn8Eik_R10EcA/exec";
 
     const formulario = document.getElementById('meuFormulario');
     const msgSucesso = document.getElementById('mensagemSucesso');
     const btnEnviar = document.getElementById('btnEnviar');
-    const btnNovo = document.getElementById('btnNovo');
+    const btnNovo = document.getElementById('btnNovo')
 
     formulario.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -129,7 +127,7 @@
 
         fetch(`${URL_GOOGLE}?${queryParams}`, {
             method: 'POST',
-            mode: 'no-cors'
+            mode: 'no-cors' // Impede o bloqueio do navegador
         })
         .then(() => {
             formulario.style.display = 'none';
@@ -138,7 +136,6 @@
         })
         .catch(error => {
             console.error('Erro:', error);
-            // Garante o feedback visual de transição de tela mesmo em variações de rede
             formulario.style.display = 'none';
             msgSucesso.style.display = 'block';
         })
@@ -148,10 +145,12 @@
         });
     });
 
-    btnNovo.addEventListener('click', function() {
-        msgSucesso.style.display = 'none';
-        formulario.style.display = 'block';
-    });
+    if(btnNovo) {
+        btnNovo.addEventListener('click', function() {
+            msgSucesso.style.display = 'none';
+            formulario.style.display = 'block';
+        });
+    }
   </script>
 
 </body>
