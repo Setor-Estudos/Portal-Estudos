@@ -261,46 +261,12 @@
     cursor: pointer;
     transition: background 0.15s, transform 0.1s;
     white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
   }
 
   .btn-submit:hover { background: var(--blue-mid); }
   .btn-submit:active { transform: scale(0.98); }
-  .btn-submit:disabled { background: var(--grey-400); cursor: not-allowed; }
-
-  /* SUCCESS */
-  .success-msg {
-    display: none;
-    text-align: center;
-    padding: 48px 24px;
-  }
-
-  .success-msg h3 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--blue-deep);
-    margin-bottom: 8px;
-  }
-
-  .success-msg p {
-    font-size: 14px;
-    color: var(--grey-400);
-    margin-bottom: 24px;
-  }
-
-  .btn-new {
-    background: none;
-    border: 1.5px solid var(--blue-mid);
-    color: var(--blue-mid);
-    border-radius: 8px;
-    padding: 10px 22px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-
-  .btn-new:hover { background: var(--blue-light); }
 </style>
 </head>
 <body>
@@ -309,109 +275,58 @@
     <div class="logo">
       <div class="logo-mark">AR</div>
       <div>
-        <div class="logo-text">Portal de Estudos</div>
-        <div class="logo-sub">Águas do Rio</div>
+        <div class="logo-text">Águas do Rio</div>
+        <div class="logo-sub">Estudos Estratégicos</div>
       </div>
     </div>
-    <div class="header-tag">Planejamento Estratégico</div>
+    <div class="header-tag">Portal Interno</div>
   </header>
 
   <section class="hero">
-    <div class="hero-eyebrow">SOLICITAÇÃO DE ANÁLISE</div>
-    <h1>Envie sua demanda para a equipe de estudos</h1>
-    <p>Preencha os dados abaixo de forma detalhada para dar início ao processo de análise técnica.</p>
+    <span class="hero-eyebrow">SOLICITAÇÃO DE ESTUDOS</span>
+    <h1>Planejamento e Análise</h1>
+    <p>Utilize este portal para registrar suas solicitações de estudos, consultas ou suporte acadêmico e operacional.</p>
   </section>
 
   <main class="container">
     <div class="form-card">
-      
-      <!-- FORMULÁRIO ATIVO -->
-      <form id="meuFormulario">
-        <div class="form-header">
-          <h2>Informações da Solicitação</h2>
-          <p>Todos os campos são de preenchimento obrigatório para a triagem da demanda.</p>
-        </div>
+      <div class="form-header">
+        <h2>Nova Solicitação</h2>
+        <p>Preencha os campos abaixo. Ao enviar, o Sheet Monkey redirecionará para a tela de confirmação.</p>
+      </div>
+
+      <!-- ENVIO DIRETO SEM JAVASCRIPT TRAVANDO: SUBSTITUA O LINK ABAIXO PELO SEU LINK DO SHEET MONKEY SE QUISER -->
+      <form action="https://sheetmonkey.io" method="POST">
+        
+        <!-- O parâmetro abaixo força o Sheet Monkey a redirecionar de volta para o seu site com sucesso -->
+        <input type="hidden" name="x-success" value="https://github.io">
 
         <div class="form-grid">
+          
           <div class="form-group">
-            <label for="nome">Nome do Solicitante <span class="req">*</span></label>
-            <input type="text" id="nome" name="Nome" placeholder="Seu nome completo" required>
+            <label for="nome">Nome do Aluno <span class="req">*</span></label>
+            <input type="text" id="nome" name="Nome" placeholder="Digite seu nome completo" required>
           </div>
 
           <div class="form-group">
-            <label for="materia">Matéria / Tema de Estudo <span class="req">*</span></label>
-            <input type="text" id="materia" name="Materia" placeholder="Ex: Viabilidade de Redes, Perdas..." required>
+            <label for="materia">Matéria Estudada <span class="req">*</span></label>
+            <input type="text" id="materia" name="Materia" placeholder="Ex: Hidráulica, Engenharia..." required>
           </div>
 
           <div class="form-group full">
-            <label for="duvida">Descrição do Problema / Dúvida <span class="req">*</span></label>
-            <textarea id="duvida" name="Duvida_Problema" placeholder="Descreva de forma detalhada qual o cenário ou estudo necessário..." required></textarea>
+            <label for="duvida">Dúvida ou Problema <span class="req">*</span></label>
+            <textarea id="duvida" name="Duvida_Problema" placeholder="Descreva de forma detalhada o seu problema..." required></textarea>
           </div>
+
         </div>
 
         <div class="form-footer">
-          <div class="form-note">
-            Ao enviar, os dados serão catalogados automaticamente na planilha integrada de acompanhamento.
-          </div>
-          <button type="submit" class="btn-submit" id="btnEnviar">Enviar Solicitação</button>
+          <p class="form-note">Os dados submetidos serão computados automaticamente em sua planilha cadastrada.</p>
+          <button type="submit" class="btn-submit">Enviar Solicitação</button>
         </div>
       </form>
-
-      <!-- MENSAGEM DE SUCESSO -->
-      <div class="success-msg" id="mensagemSucesso">
-        <div class="success-icon">✓</div>
-        <h3>Solicitação enviada com sucesso!</h3>
-        <p>Os dados já foram registrados na planilha da equipe de engenharia e estudos estratégicos.</p>
-        <button class="btn-new" id="btnNovo">Nova Solicitação</button>
-      </div>
-
     </div>
   </main>
 
-  <!-- LÓGICA DE INTEGRAÇÃO COM O GOOGLE SHEETS -->
-  <script>
-      const URL_GOOGLE = "https://google.com";
-
-  const formulario = document.getElementById('meuFormulario');
-  const msgSucesso = document.getElementById('mensagemSucesso');
-  const btnEnviar = document.getElementById('btnEnviar');
-  const btnNovo = document.getElementById('btnNovo');
-
-  formulario.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      btnEnviar.innerText = "Processando Envio...";
-      btnEnviar.disabled = true;
-
-      const formData = new FormData(this);
-      const queryParams = new URLSearchParams(formData).toString();
-
-      // Envia os dados para o Google Sheets destravando o navegador
-      fetch(`${URL_GOOGLE}?${queryParams}`, {
-          method: 'POST',
-          mode: 'no-cors' // IMPORTANTE: Isso impede o navegador de travar a tela
-      })
-      .then(() => {
-          // Isso força o seu layout azul a sumir e mostrar a tela com o "✓" de sucesso
-          formulario.style.display = 'none';
-          msgSucesso.style.display = 'block';
-          formulario.reset();
-      })
-      .catch(error => {
-          console.error('Erro:', error);
-          // Caso a rede demore, força o sucesso visual do mesmo jeito
-          formulario.style.display = 'none';
-          msgSucesso.style.display = 'block';
-      })
-      .finally(() => {
-          btnEnviar.innerText = "Enviar Solicitação";
-          btnEnviar.disabled = false;
-      });
-  });
-
-  if(btnNovo) {
-      btnNovo.addEventListener('click', function() {
-          msgSucesso.style.display = 'none';
-          formulario.style.display = 'block';
-      });
-  }
+</body>
+</html>
