@@ -3,62 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal de Estudos Estratégicos – Águas do Rio</title>
+<title>Portal de Estudos Estratégicos – </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
-  @import url('https://googleapis.com');
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --blue-deep: #003B6F; --blue-mid: #0065B3; --blue-light: #E8F2FB;
-    --teal: #00A3A3; --white: #FFFFFF; --grey-50: #F7F9FC;
-    --grey-200: #E2E8F0; --grey-400: #94A3B8; --grey-700: #334155;
-    --grey-900: #0F172A; --success: #059669;
-  }
-  body { font-family: 'Inter', sans-serif; background: var(--grey-50); color: var(--grey-900); min-height: 100vh; }
-  header { background: var(--blue-deep); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
-  .logo { display: flex; align-items: center; gap: 12px; }
-  .logo-mark { width: 36px; height: 36px; background: var(--teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: white; }
-  .logo-text { font-size: 15px; font-weight: 600; color: white; line-height: 1.2; }
-  .logo-sub { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.6); }
-  .header-tag { font-size: 11px; font-weight: 500; color: var(--teal); background: rgba(0,163,163,0.12); padding: 4px 10px; border-radius: 20px; }
-  .hero { background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%); padding: 64px 40px 72px; text-align: center; }
-  .hero-eyebrow { display: inline-block; font-size: 12px; font-weight: 500; color: var(--teal); background: rgba(0,163,163,0.15); padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
-  .hero h1 { font-size: 36px; font-weight: 700; color: white; max-width: 600px; margin: 0 auto 14px; }
-  .hero p { font-size: 16px; color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto; }
-  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
-  .form-card { background: white; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,59,111,0.08); padding: 48px; margin-top: -32px; position: relative; z-index: 10; }
-  .form-header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--grey-200); }
-  .form-header h2 { font-size: 20px; font-weight: 600; color: var(--blue-deep); margin-bottom: 6px; }
-  .form-header p { font-size: 14px; color: var(--grey-400); }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .form-group { display: flex; flex-direction: column; gap: 8px; }
-  .form-group.full { grid-column: 1 / -1; }
-  label { font-size: 13px; font-weight: 500; color: var(--grey-700); }
-  label span.req { color: var(--teal); }
-  input, select, textarea { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--grey-900); background: var(--grey-50); border: 1.5px solid var(--grey-200); border-radius: 8px; padding: 11px 14px; outline: none; width: 100%; }
-  input:focus, select:focus, textarea:focus { border-color: var(--blue-mid); box-shadow: 0 0 0 3px rgba(0,101,179,0.1); background: white; }
-  textarea { resize: vertical; min-height: 120px; }
-  .form-footer { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--grey-200); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .form-note { font-size: 12px; color: var(--grey-400); max-width: 360px; }
-  .btn-submit { background: var(--blue-deep); color: white; border: none; border-radius: 8px; padding: 13px 28px; font-size: 14px; font-weight: 600; cursor: pointer; }
-  .btn-submit:hover { background: var(--blue-mid); }
-  .success-msg { display: none; text-align: center; padding: 24px; }
-  .success-icon { font-size: 48px; color: var(--success); margin-bottom: 12px; }
-  .btn-new { background: none; border: 1.5px solid var(--blue-mid); color: var(--blue-mid); border-radius: 8px; padding: 10px 22px; cursor: pointer; margin-top: 15px; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue-deep:#003B6F;--blue-mid:#0065B3;--blue-light:#E8F2FB;--teal:#00A3A3;--grey-50:#F7F9FC;--grey-200:#E2E8F0;--grey-400:#94A3B8;--grey-700:#334155;--grey-900:#0F172A;--success:#059669;--red:#DC2626;--amb:#D97706}
+body{font-family:'Inter',sans-serif;background:var(--grey-50);color:var(--grey-900);min-height:100vh}
+button{font-family:inherit;cursor:pointer}
+.hide{display:none!important}
+header{background:var(--blue-deep);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:36px;height:36px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff}
+.logo-text{font-size:15px;font-weight:600;color:#fff;line-height:1.2}
+.logo-sub{font-size:11px;font-weight:400;color:rgba(255,255,255,.6)}
+.header-tag{font-size:11px;font-weight:500;color:var(--teal);background:rgba(0,163,163,.12);padding:4px 10px;border-radius:20px}
+.ghost{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:7px 14px;font-size:13px}
+.hero{background:linear-gradient(135deg,var(--blue-deep) 0%,var(--blue-mid) 100%);padding:64px 40px 72px;text-align:center}
+.hero-eyebrow{display:inline-block;font-size:12px;font-weight:500;color:var(--teal);background:rgba(0,163,163,.15);padding:5px 14px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-size:36px;font-weight:700;color:#fff;max-width:600px;margin:0 auto 14px}
+.hero p{font-size:16px;color:rgba(255,255,255,.7);max-width:480px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 24px 48px}
+.form-card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,59,111,.08);padding:48px;margin-top:-32px;position:relative;z-index:10}
+.form-header{margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--grey-200)}
+.form-header h2{font-size:20px;font-weight:600;color:var(--blue-deep);margin-bottom:6px}
+.form-header p{font-size:14px;color:var(--grey-400)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.form-group{display:flex;flex-direction:column;gap:8px}
+.form-group.full{grid-column:1/-1}
+label{font-size:13px;font-weight:500;color:var(--grey-700)}
+label span.req{color:var(--teal)}
+input,select,textarea{font-family:'Inter',sans-serif;font-size:14px;color:var(--grey-900);background:var(--grey-50);border:1.5px solid var(--grey-200);border-radius:8px;padding:11px 14px;outline:none;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--blue-mid);box-shadow:0 0 0 3px rgba(0,101,179,.1);background:#fff}
+textarea{resize:vertical;min-height:120px}
+.form-footer{margin-top:36px;padding-top:28px;border-top:1px solid var(--grey-200);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.form-note{font-size:12px;color:var(--grey-400);max-width:360px}
+.btn-submit{background:var(--blue-deep);color:#fff;border:none;border-radius:8px;padding:13px 28px;font-size:14px;font-weight:600}
+.btn-submit:hover{background:var(--blue-mid)}
+.success-msg{display:none;text-align:center;padding:24px}
+.success-icon{font-size:48px;color:var(--success);margin-bottom:12px}
+.btn-new{background:none;border:1.5px solid var(--blue-mid);color:var(--blue-mid);border-radius:8px;padding:10px 22px;margin-top:15px}
+
+/* botão lateral */
+#abrirPainel{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:90;background:var(--teal);color:#fff;border:0;border-radius:10px 0 0 10px;padding:18px 10px;font-size:13px;font-weight:600;writing-mode:vertical-rl;box-shadow:-2px 2px 12px rgba(0,59,111,.2)}
+#abrirPainel:hover{background:var(--blue-mid)}
+/* modal senha */
+#modal{position:fixed;inset:0;background:rgba(15,23,42,.55);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
+#modal form{background:#fff;border-radius:14px;padding:32px;width:100%;max-width:360px;box-shadow:0 8px 40px rgba(0,0,0,.25)}
+#modal h3{font-size:18px;color:var(--blue-deep);margin-bottom:6px}
+#modal p{font-size:13px;color:var(--grey-400);margin-bottom:18px}
+.btn{background:var(--blue-deep);color:#fff;border:0;border-radius:8px;padding:11px 20px;font-weight:600;width:100%;margin-top:12px;font-size:14px}
+.btn:hover{background:var(--blue-mid)}
+.btn.sec{background:none;color:var(--grey-400);font-weight:500;margin-top:4px}
+#err{color:var(--red);font-size:13px;margin-top:10px;min-height:18px}
+/* dashboard */
+#painel main{max-width:1180px;margin:0 auto;padding:28px 24px 60px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.kpi{background:#fff;border:1px solid var(--grey-200);border-radius:10px;padding:18px}
+.kpi b{display:block;font-size:34px;font-weight:700;color:var(--blue-deep);line-height:1.1}
+.kpi span{font-size:13px;color:#64748B}
+.kpi.main{background:var(--blue-deep);border-color:var(--blue-deep)}.kpi.main b,.kpi.main span{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:14px}
+.card{background:#fff;border:1px solid var(--grey-200);border-radius:10px;padding:20px}
+.card h2{font-size:14px;font-weight:600;color:var(--blue-deep);margin-bottom:14px}
+.bar{display:grid;grid-template-columns:110px 1fr 34px;gap:10px;align-items:center;font-size:13px;margin:9px 0}
+.bar i{display:block;height:10px;border-radius:5px;background:var(--blue-mid)}
+.bar div{background:var(--grey-50);border-radius:5px}.bar em{font-style:normal;text-align:right;font-weight:600}
+.bar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.filters{display:flex;gap:10px;margin:26px 0 12px;flex-wrap:wrap}.filters select,.filters input{width:auto;flex:1;min-width:150px}
+.tbl{overflow-x:auto;background:#fff;border:1px solid var(--grey-200);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--grey-200);vertical-align:top}
+th{color:#64748B;font-weight:600;background:var(--grey-50)}td.d{max-width:340px}
+.tag{padding:3px 9px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap}
+.Alta{background:#FEE2E2;color:var(--red)}.Média{background:#FEF3C7;color:var(--amb)}.Baixa{background:#DCFCE7;color:var(--success)}
+.Novo{background:var(--blue-light);color:var(--blue-mid)}.Em\ andamento{background:#FEF3C7;color:var(--amb)}.Concluído{background:#DCFCE7;color:var(--success)}
+.empty{padding:30px;text-align:center;color:#64748B}
+@media(max-width:700px){header{padding:0 16px}.form-card{padding:28px 20px}.form-grid{grid-template-columns:1fr}.form-footer{flex-direction:column;align-items:stretch}.hero{padding:48px 20px 64px}.hero h1{font-size:28px}#painel main{padding:20px 14px}}
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">
-      <div class="logo-mark">AR</div>
-      <div>
-        <div class="logo-text">Portal de Estudos</div>
-        <div class="logo-sub">Águas do Rio</div>
-      </div>
-    </div>
-    <div class="header-tag">Planejamento Estratégico</div>
-  </header>
+<header>
+  <div class="logo">
+    <div class="logo-mark">AR</div>
+    <div><div class="logo-text">Portal de Estudos</div><div class="logo-sub"></div></div>
+  </div>
+  <div class="header-tag" id="tagHeader">Planejamento Estratégico</div>
+  <button class="ghost hide" id="sairPainel">Voltar ao formulário</button>
+</header>
 
+<!-- ===== VISTA 1: FORMULÁRIO ===== -->
+<div id="vistaForm">
   <section class="hero">
     <span class="hero-eyebrow">SOLICITAÇÃO DE ANÁLISE</span>
     <h1>Portal de Estudos Estratégicos</h1>
@@ -67,91 +103,168 @@
 
   <main class="container">
     <div class="form-card">
-      
       <form id="meuFormulario">
         <div class="form-header">
           <h2>Informações da Solicitação</h2>
           <p>Preencha todos os campos obrigatórios para enviar.</p>
         </div>
-
         <div class="form-grid">
           <div class="form-group">
             <label for="nome">Nome do Solicitante <span class="req">*</span></label>
             <input type="text" id="nome" name="Nome" placeholder="Seu nome completo" required>
           </div>
-
           <div class="form-group">
             <label for="materia">Matéria / Tema de Estudo <span class="req">*</span></label>
             <input type="text" id="materia" name="Materia" placeholder="Ex: Engenharia, Comercial..." required>
           </div>
-
           <div class="form-group full">
             <label for="duvida">Descrição do Problema / Dúvida <span class="req">*</span></label>
             <textarea id="duvida" name="Duvida_Problema" placeholder="Descreva os detalhes do problema..." required></textarea>
           </div>
         </div>
-
         <div class="form-footer">
           <p class="form-note">Ao enviar, os dados serão computados diretamente no painel de acompanhamento.</p>
           <button type="submit" class="btn-submit" id="btnEnviar">Enviar Solicitação</button>
         </div>
       </form>
-
       <div class="success-msg" id="mensagemSucesso">
         <div class="success-icon">✓</div>
         <h3>Enviado com sucesso!</h3>
         <p>Os dados já constam no painel integrado do Google Sheets.</p>
         <button class="btn-new" id="btnNovo">Nova Solicitação</button>
       </div>
-
     </div>
   </main>
 
-  <script>
-    // DELETADO O LINK DO SHEET MONKEY VELHO E ATIVADO O SEU ENDEREÇO DO GOOGLE:
-    const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbzLoIFqnlvxvkvhdkCKmcAyiiQqpbsm25dSWe1Q3mpZWKENmCZ-63ihpqn8Eik_R10EcA/exec";
+  <button id="abrirPainel">Acessar painel</button>
+</div>
 
-    const formulario = document.getElementById('meuFormulario');
-    const msgSucesso = document.getElementById('mensagemSucesso');
-    const btnEnviar = document.getElementById('btnEnviar');
-    const btnNovo = document.getElementById('btnNovo')
+<!-- ===== VISTA 2: DASHBOARD (só aparece após senha) ===== -->
+<div id="painel" class="hide">
+  <main>
+    <section class="kpis" id="kpis"></section>
+    <section class="grid">
+      <div class="card"><h2>Por status</h2><div id="g-status"></div></div>
+      <div class="card"><h2>Por prioridade</h2><div id="g-prio"></div></div>
+      <div class="card"><h2>Por matéria / tema</h2><div id="g-mat"></div></div>
+      <div class="card"><h2>Solicitações por mês</h2><div id="g-mes"></div></div>
+    </section>
+    <div class="filters">
+      <input id="f-q" placeholder="Buscar nome, tema ou descrição">
+      <select id="f-status"><option value="">Todos os status</option><option>Novo</option><option>Em andamento</option><option>Concluído</option></select>
+      <select id="f-prio"><option value="">Todas as prioridades</option><option>Alta</option><option>Média</option><option>Baixa</option></select>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Data</th><th>Solicitante</th><th>Tema</th><th>Descrição</th><th>Prioridade</th><th>Status</th><th>Responsável</th></tr></thead>
+      <tbody id="rows"></tbody></table></div>
+  </main>
+</div>
 
-    formulario.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        btnEnviar.innerText = "Enviando...";
-        btnEnviar.disabled = true;
+<!-- ===== MODAL DE SENHA ===== -->
+<div id="modal" class="hide">
+  <form id="formSenha">
+    <h3>Acesso restrito</h3>
+    <p>Digite a senha da equipe para abrir o painel.</p>
+    <input type="password" id="senha" placeholder="Senha" autocomplete="current-password" required>
+    <button class="btn" id="entrar">Entrar</button>
+    <button type="button" class="btn sec" id="cancelar">Cancelar</button>
+    <div id="err"></div>
+  </form>
+</div>
 
-        const formData = new FormData(this);
-        const queryParams = new URLSearchParams(formData).toString();
+<script>
+const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbzLoIFqnlvxvkvhdkCKmcAyiiQqpbsm25dSWe1Q3mpZWKENmCZ-63ihpqn8Eik_R10EcA/exec";
+const $ = id => document.getElementById(id);
 
-        fetch(`${URL_GOOGLE}?${queryParams}`, {
-            method: 'POST',
-            mode: 'no-cors' // Impede o bloqueio do navegador
-        })
-        .then(() => {
-            formulario.style.display = 'none';
-            msgSucesso.style.display = 'block';
-            formulario.reset();
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            formulario.style.display = 'none';
-            msgSucesso.style.display = 'block';
-        })
-        .finally(() => {
-            btnEnviar.innerText = "Enviar Solicitação";
-            btnEnviar.disabled = false;
-        });
+/* ---------- FORMULÁRIO ---------- */
+const formulario = $('meuFormulario'), msgSucesso = $('mensagemSucesso'), btnEnviar = $('btnEnviar');
+formulario.addEventListener('submit', function(e){
+  e.preventDefault();
+  btnEnviar.innerText = "Enviando..."; btnEnviar.disabled = true;
+  const qs = new URLSearchParams(new FormData(this)).toString();
+  fetch(`${URL_GOOGLE}?${qs}`, {method:'POST', mode:'no-cors'})
+    .catch(err => console.error('Erro:', err))
+    .finally(() => {
+      formulario.style.display='none'; msgSucesso.style.display='block'; formulario.reset();
+      btnEnviar.innerText="Enviar Solicitação"; btnEnviar.disabled=false;
     });
+});
+$('btnNovo').addEventListener('click', () => { msgSucesso.style.display='none'; formulario.style.display='block'; });
 
-    if(btnNovo) {
-        btnNovo.addEventListener('click', function() {
-            msgSucesso.style.display = 'none';
-            formulario.style.display = 'block';
-        });
+/* ---------- ACESSO AO PAINEL ---------- */
+let DADOS = [];
+$('abrirPainel').onclick = () => { $('err').textContent=''; $('senha').value=''; $('modal').classList.remove('hide'); $('senha').focus(); };
+$('cancelar').onclick = () => $('modal').classList.add('hide');
+$('modal').addEventListener('click', e => { if(e.target===$('modal')) $('modal').classList.add('hide'); });
+
+$('formSenha').addEventListener('submit', async e => {
+  e.preventDefault(); $('err').textContent=''; $('entrar').textContent='Verificando...';
+  try{
+    /* ===== DEMO: apague este bloco quando o painel real estiver funcionando ===== */
+    if($('senha').value === 'demo'){
+      DADOS = [
+        {data:"2026-09-04T09:10:00",nome:"Carla M.",materia:"Engenharia",duvida:"Estudo de perdas na zona oeste",prioridade:"Alta",status:"Concluído",responsavel:"Ana",conclusao:"2026-09-12T16:00:00"},
+        {data:"2026-09-18T11:00:00",nome:"Rafael S.",materia:"Comercial",duvida:"Análise de inadimplência por região",prioridade:"Média",status:"Concluído",responsavel:"Bruno",conclusao:"2026-09-30T10:00:00"},
+        {data:"2026-10-05T14:20:00",nome:"Paula T.",materia:"Operações",duvida:"Dimensionamento de reservatório",prioridade:"Alta",status:"Em andamento",responsavel:"Ana",conclusao:""},
+        {data:"2026-10-21T08:45:00",nome:"João P.",materia:"Engenharia",duvida:"Impacto de obra na pressão da rede",prioridade:"Média",status:"Em andamento",responsavel:"Bruno",conclusao:""},
+        {data:"2026-11-03T10:30:00",nome:"Marina L.",materia:"Financeiro",duvida:"Projeção de receita tarifária",prioridade:"Baixa",status:"Novo",responsavel:"",conclusao:""},
+        {data:"2026-11-10T15:05:00",nome:"Diego R.",materia:"Comercial",duvida:"Perfil de consumo por bairro",prioridade:"Alta",status:"Novo",responsavel:"",conclusao:""}
+      ];
+      abrirPainel(); $('entrar').textContent='Entrar'; return;
     }
-  </script>
+    /* ===== FIM DO DEMO ===== */
+    const r = await fetch(URL_GOOGLE + '?token=' + encodeURIComponent($('senha').value));
+    const j = await r.json();
+    if(!j.ok) throw new Error('senha');
+    DADOS = j.dados; abrirPainel();
+  }catch(x){
+    $('err').textContent = x.message==='senha' ? 'Senha incorreta.' : 'Não foi possível carregar os dados. Verifique a implantação do Apps Script.';
+  }
+  $('entrar').textContent='Entrar';
+});
+function abrirPainel(){
+  $('modal').classList.add('hide'); $('vistaForm').classList.add('hide'); $('painel').classList.remove('hide');
+  $('sairPainel').classList.remove('hide'); $('tagHeader').classList.add('hide'); render(); scrollTo(0,0);
+}
+$('sairPainel').onclick = () => {
+  DADOS=[]; $('painel').classList.add('hide'); $('vistaForm').classList.remove('hide');
+  $('sairPainel').classList.add('hide'); $('tagHeader').classList.remove('hide');
+};
 
+/* ---------- DASHBOARD ---------- */
+const cont=(a,k)=>a.reduce((m,x)=>{const v=x[k]||"—";m[v]=(m[v]||0)+1;return m},{});
+function barras(el,obj,ordem){
+  const ks=(ordem||Object.keys(obj).sort((a,b)=>obj[b]-obj[a])).filter(k=>obj[k]!=null);
+  const max=Math.max(1,...ks.map(k=>obj[k]));
+  $(el).innerHTML=ks.length?ks.map(k=>`<div class="bar"><span title="${k}">${k}</span><div><i style="width:${obj[k]/max*100}%"></i></div><em>${obj[k]}</em></div>`).join(""):'<p class="empty">Sem dados</p>';
+}
+const fd=s=>s?new Date(s).toLocaleDateString("pt-BR"):"—";
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function render(){
+  const d=DADOS, st=cont(d,"status"), conc=d.filter(x=>x.conclusao);
+  const dias=conc.map(x=>(new Date(x.conclusao)-new Date(x.data))/864e5).filter(n=>n>=0);
+  const tm=dias.length?(dias.reduce((a,b)=>a+b,0)/dias.length).toFixed(1).replace(".",","):"—";
+  const taxa=d.length?Math.round((st["Concluído"]||0)/d.length*100):0;
+  const altas=d.filter(x=>x.prioridade==="Alta"&&x.status!=="Concluído").length;
+  $("kpis").innerHTML=[
+    ["main",d.length,"Estudos solicitados"],["",st["Concluído"]||0,"Concluídos"],
+    ["",st["Em andamento"]||0,"Em andamento"],["",st["Novo"]||0,"Aguardando início"],
+    ["",altas,"Alta prioridade em aberto"],["",taxa+"%","Taxa de conclusão"],["",tm+(tm==="—"?"":" d"),"Tempo médio de entrega"]
+  ].map(k=>`<div class="kpi ${k[0]}"><b>${k[1]}</b><span>${k[2]}</span></div>`).join("");
+  barras("g-status",st,["Novo","Em andamento","Concluído"]);
+  barras("g-prio",cont(d,"prioridade"),["Alta","Média","Baixa"]);
+  barras("g-mat",cont(d,"materia"));
+  const meses={}; d.slice().sort((a,b)=>a.data<b.data?-1:1).forEach(x=>{const k=String(x.data).slice(0,7).split("-").reverse().join("/");meses[k]=(meses[k]||0)+1});
+  barras("g-mes",meses,Object.keys(meses));
+  tabela();
+}
+function tabela(){
+  const q=$("f-q").value.toLowerCase(), s=$("f-status").value, p=$("f-prio").value, o={Alta:0,Média:1,Baixa:2};
+  const l=DADOS.filter(x=>(!s||x.status===s)&&(!p||x.prioridade===p)&&(!q||(x.nome+x.materia+x.duvida).toLowerCase().includes(q)))
+    .sort((a,b)=>(a.status==="Concluído")-(b.status==="Concluído")||o[a.prioridade]-o[b.prioridade]||(a.data<b.data?1:-1));
+  $("rows").innerHTML=l.length?l.map(x=>`<tr><td>${fd(x.data)}</td><td>${esc(x.nome)}</td><td>${esc(x.materia)}</td><td class="d">${esc(x.duvida)}</td><td><span class="tag ${x.prioridade}">${x.prioridade}</span></td><td><span class="tag ${x.status}">${x.status}</span></td><td>${esc(x.responsavel)||"—"}</td></tr>`).join(""):'<tr><td colspan="7" class="empty">Nenhuma solicitação encontrada com esses filtros.</td></tr>';
+}
+["f-q","f-status","f-prio"].forEach(i=>$(i).addEventListener("input",tabela));
+</script>
 </body>
 </html>
