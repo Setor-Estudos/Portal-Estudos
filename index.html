@@ -200,19 +200,6 @@ $('modal').addEventListener('click', e => { if(e.target===$('modal')) $('modal')
 $('formSenha').addEventListener('submit', async e => {
   e.preventDefault(); $('err').textContent=''; $('entrar').textContent='Verificando...';
   try{
-    /* ===== DEMO: apague este bloco quando o painel real estiver funcionando ===== */
-    if($('senha').value === 'demo'){
-      DADOS = [
-        {data:"2026-09-04T09:10:00",nome:"Carla M.",materia:"Engenharia",duvida:"Estudo de perdas na zona oeste",prioridade:"Alta",status:"Concluído",responsavel:"Ana",conclusao:"2026-09-12T16:00:00"},
-        {data:"2026-09-18T11:00:00",nome:"Rafael S.",materia:"Comercial",duvida:"Análise de inadimplência por região",prioridade:"Média",status:"Concluído",responsavel:"Bruno",conclusao:"2026-09-30T10:00:00"},
-        {data:"2026-10-05T14:20:00",nome:"Paula T.",materia:"Operações",duvida:"Dimensionamento de reservatório",prioridade:"Alta",status:"Em andamento",responsavel:"Ana",conclusao:""},
-        {data:"2026-10-21T08:45:00",nome:"João P.",materia:"Engenharia",duvida:"Impacto de obra na pressão da rede",prioridade:"Média",status:"Em andamento",responsavel:"Bruno",conclusao:""},
-        {data:"2026-11-03T10:30:00",nome:"Marina L.",materia:"Financeiro",duvida:"Projeção de receita tarifária",prioridade:"Baixa",status:"Novo",responsavel:"",conclusao:""},
-        {data:"2026-11-10T15:05:00",nome:"Diego R.",materia:"Comercial",duvida:"Perfil de consumo por bairro",prioridade:"Alta",status:"Novo",responsavel:"",conclusao:""}
-      ];
-      abrirPainel(); $('entrar').textContent='Entrar'; return;
-    }
-    /* ===== FIM DO DEMO ===== */
     const r = await fetch(URL_GOOGLE + '?token=' + encodeURIComponent($('senha').value));
     const j = await r.json();
     if(!j.ok) throw new Error('senha');
