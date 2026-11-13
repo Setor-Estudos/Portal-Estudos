@@ -245,11 +245,75 @@ function render(){
   barras("g-mes",meses,Object.keys(meses));
   tabela();
 }
-function tabela(){
-  const q=$("f-q").value.toLowerCase(), s=$("f-status").value, p=$("f-prio").value, o={Alta:0,Média:1,Baixa:2};
-  const l=DADOS.filter(x=>(!s||x.status===s)&&(!p||x.prioridade===p)&&(!q||(x.nome+x.materia+x.duvida).toLowerCase().includes(q)))
-    .sort((a,b)=>(a.status==="Concluído")-(b.status==="Concluído")||o[a.prioridade]-o[b.prioridade]||(a.data<b.data?1:-1));
-  $("rows").innerHTML=l.length?l.map(x=>`<tr><td>${fd(x.data)}</td><td>${esc(x.nome)}</td><td>${esc(x.materia)}</td><td class="d">${esc(x.duvida)}</td><td><span class="tag ${x.prioridade}">${x.prioridade}</span></td><td><span class="tag ${x.status}">${x.status}</span></td><td>${esc(x.responsavel)||"—"}</td></tr>`).join(""):'<tr><td colspan="7" class="empty">Nenhuma solicitação encontrada com esses filtros.</td></tr>';
+function salvarLinha(linha, campo, valor) {
+  const item = DADOS.find(x => x.linha === linha);
+  if (item) {
+    item[campo] = valor;
+    if (campo === "status") {
+      item.conclusao = valor === "Concluído" ? new Date().toISOString() : "";
+    }
+    render();
+  }
+
+  const qs = new URLSearchParams({
+    acao: "atualizar",
+    token: $("senha").value,
+    linha: linha,
+    campo: campo,
+    valor: valor
+  }).toString();
+
+  fetch(`${URL_GOOGLE}?${qs}`, { method: "POST", mode: "no-cors" })
+    .catch(() => alert("Não foi possível salvar na planilha."));
+}
+
+function tabela() {
+  const q = $("f-q").value.toLowerCase(), s = $("f-status").value, p = $("f-prio").value;
+  const o = { Alta: 0, Média: 1, Normal: 2, Baixa: 2 };
+  const coresPrio = {
+    Alta: "background:#fee2e2;color:#b91c1c;border:1px solid #fecaca",
+    Média: "background:#fef3c7;color:#b45309;border:1px solid #fde68a",
+    Normal: "background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd"
+  };
+  const coresStatus = {
+    "Novo": "background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd",
+    "Em andamento": "background:#fef3c7;color:#b45309;border:1px solid #fde68a",
+    "Concluído": "background:#dcfce7;color:#15803d;border:1px solid #bbf7d0"
+  };
+
+  const l = DADOS.filter(x => (!s || x.status === s) && (!p || x.prioridade === p) && (!q || (x.nome + x.materia + x.duvida).toLowerCase().includes(q)))
+    .sort((a, b) => (a.status === "Concluído") - (b.status === "Concluído") || (o[a.prioridade] ?? 2) - (o[b.prioridade] ?? 2) || (a.data < b.data ? 1 : -1));
+
+  $("rows").innerHTML = l.length ? l.map(x => {
+    const prioAtual = x.prioridade === "Baixa" ? "Normal" : (x.prioridade || "Média");
+    const statusAtual = x.status || "Novo";
+    const estiloPrio = coresPrio[prioAtual] || coresPrio.Média;
+    const estiloStatus = coresStatus[statusAtual] || coresStatus["Novo"];
+
+    return `<tr>
+      <td>${fd(x.data)}</td>
+      <td>${esc(x.nome)}</td>
+      <td>${esc(x.materia)}</td>
+      <td class="d">${esc(x.duvida)}</td>
+      <td>
+        <select onchange="salvarLinha(${x.linha}, 'prioridade', this.value)" style="${estiloPrio};padding:4px 8px;border-radius:99px;font-size:12px;font-weight:600;cursor:pointer;outline:none">
+          <option value="Normal" ${prioAtual === "Normal" ? "selected" : ""}>Normal</option>
+          <option value="Média" ${prioAtual === "Média" ? "selected" : ""}>Média</option>
+          <option value="Alta" ${prioAtual === "Alta" ? "selected" : ""}>Alta</option>
+        </select>
+      </td>
+      <td>
+        <select onchange="salvarLinha(${x.linha}, 'status', this.value)" style="${estiloStatus};padding:4px 8px;border-radius:99px;font-size:12px;font-weight:600;cursor:pointer;outline:none">
+          <option value="Novo" ${statusAtual === "Novo" ? "selected" : ""}>Novo</option>
+          <option value="Em andamento" ${statusAtual === "Em andamento" ? "selected" : ""}>Em andamento</option>
+          <option value="Concluído" ${statusAtual === "Concluído" ? "selected" : ""}>Concluído</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" value="${esc(x.responsavel || "")}" placeholder="Definir..." onchange="salvarLinha(${x.linha}, 'responsavel', this.value)" style="padding:4px 8px;border-radius:6px;font-size:12px;border:1px solid #e2e8f0;width:110px">
+      </td>
+    </tr>`;
+  }).join("") : `<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:24px">Nenhuma solicitação encontrada com esses filtros.</td></tr>`;
 }
 ["f-q","f-status","f-prio"].forEach(i=>$(i).addEventListener("input",tabela));
 </script>
